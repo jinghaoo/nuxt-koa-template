@@ -1,8 +1,8 @@
 {
-  "name": "{{ name }}",
+  "name": "name",
   "version": "1.0.0",
-  "description": "{{ description }}",
-  "author": "{{ author }}",
+  "description": "description",
+  "author": "author",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
@@ -12,9 +12,12 @@
     "test": "ava"
   },
   "dependencies": {
+    "bluebird": "^3.5.4",
     "cross-env": "^5.2.0",
+    "dotenv": "^7.0.0",
+    "koa": "^2.6.2",
     "nuxt": "^2.4.0",
-    "koa": "^2.6.2"
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9",

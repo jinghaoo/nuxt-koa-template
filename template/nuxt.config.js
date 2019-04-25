@@ -28,6 +28,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    '~/assets/styles/common/normalize.less', 
+    '~/assets/styles/common/reset.less'
   ],
 
   /*
@@ -46,6 +48,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: ['axios'],
     /*
     ** You can extend webpack config here
     */
