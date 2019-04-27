@@ -1,8 +1,8 @@
+const resolve = require('path').resolve
 const pkg = require('./package')
-
-
+require('dotenv').config()
 module.exports = {
-  mode: 'spa',
+  mode: 'universal',
 
   /*
   ** Headers of the page
@@ -22,14 +22,14 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: resolve(__dirname, 'components/loading.vue'),
 
   /*
   ** Global CSS
   */
   css: [
-    '~/assets/styles/common/normalize.less', 
-    '~/assets/styles/common/reset.less'
+    '@/styles/common/normalize.less', 
+    '@/styles/common/reset.less'
   ],
 
   /*
@@ -48,11 +48,20 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['axios'],
+    analyze: false,
+    publicPath: (process.env.CDN_PATH ? process.env.CDN_PATH : '') + '/.nuxt/dist/',
     /*
     ** You can extend webpack config here
     */
     extend(config, ctx) {
+      if (ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
     }
   }
 }
